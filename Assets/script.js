@@ -18,7 +18,7 @@ function renderLastRegistered() {
   }
 }
 // Created event listener for all saveBtn that saves the user event and calls renderLastRegistered
-$(".saveBtn").on("click", function () {
+function saveEvent() {
   const textAreaInput = document.querySelector(".eventTextArea").value;
   if (textAreaInput === "") {
     alert("please provide an event in order to save");
@@ -26,4 +26,6 @@ $(".saveBtn").on("click", function () {
     localStorage.setItem("userEvent", textAreaInput);
     renderLastRegistered();
   }
-});
+}
+
+$("#saveBtn").on("click", saveEvent);
