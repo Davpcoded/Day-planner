@@ -29,3 +29,4 @@ function saveEvent() {
 }
 
 $("#saveBtn").on("click", saveEvent);
+$("#saveBtn2").on("click", saveEvent);
