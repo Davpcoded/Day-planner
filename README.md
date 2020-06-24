@@ -2,7 +2,7 @@
 
 - link to the app https://davpcoded.github.io/Day-planner/
 
-![image](Assets\Images\Work Day Scheduler.gif)
+![image](https://github.com/Davpcoded/Day-planner/blob/master/Assets/Images/Work%20Day%20Scheduler.gif)
 
 # Github
 
