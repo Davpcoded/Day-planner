@@ -1,106 +1,59 @@
-//invoking moment.js and displaying it in the header of the planner
-const presentTime = moment().format("LLL");
-const currentDayEl = document.querySelector("#currentDay");
+$(document).ready(function () {
+  // Sets the date at the top of the page (in the header).
+  $("#currentDay").text(moment().format("LLL"));
 
-currentDayEl.textContent = presentTime;
+  //Creates a variable to register the current, real world time in 12-hour format
+  var currentTime = moment().format("h");
+  //Creates a variable to register the current, real world time in 24-hour format
+  var milTime = moment().format("H");
 
-const inputElement0 = document.getElementById("eventTextArea0");
-const inputElement1 = document.getElementById("eventTextArea1");
-const inputElement2 = document.getElementById("eventTextArea2");
-const inputElement3 = document.getElementById("eventTextArea3");
-const inputElement4 = document.getElementById("eventTextArea4");
-const inputElement5 = document.getElementById("eventTextArea5");
-const inputElement6 = document.getElementById("eventTextArea6");
-const inputElement7 = document.getElementById("eventTextArea7");
-const inputElement8 = document.getElementById("eventTextArea8");
-inputElement0.innerText = localStorage.getItem("userEvent0");
-inputElement1.innerText = localStorage.getItem("userEvent1");
-inputElement2.innerText = localStorage.getItem("userEvent2");
-inputElement3.innerText = localStorage.getItem("userEvent3");
-inputElement4.innerText = localStorage.getItem("userEvent4");
-inputElement5.innerText = localStorage.getItem("userEvent5");
-inputElement6.innerText = localStorage.getItem("userEvent6");
-inputElement7.innerText = localStorage.getItem("userEvent7");
-inputElement8.innerText = localStorage.getItem("userEvent8");
+  // Sets the color attributes for the blocks according to what the current time is
+  for (var hour = 9; hour <= 17; hour++) {
+    var index = hour;
+    var blockTime = $("#" + index).data("military");
 
-$(".saveBtn0").on("click", function () {
-  const userEvent = $("#eventTextArea0").val();
-
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent0", userEvent);
+    if (blockTime == milTime) {
+      $("#" + index).css({ "background-color": "#ff6961", color: "white" });
+    } else if (blockTime < milTime) {
+      $("#" + index).css({ "background-color": "#d3d3d3", color: "white" });
+    } else if (blockTime > milTime) {
+      $("#" + index).css({ "background-color": "#77dd77", color: "white" });
+    }
   }
-});
-$(".saveBtn1").on("click", function () {
-  const userEvent = $("#eventTextArea1").val();
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent1", userEvent);
-  }
-});
-$(".saveBtn2").on("click", function () {
-  const userEvent = $("#eventTextArea2").val();
+  //Sets a variable that allows us to get previously submitted items out of local storage for each time block
+  var nineAM = localStorage.getItem("9");
+  $("#9").val(nineAM);
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent2", userEvent);
-  }
-});
-$(".saveBtn3").on("click", function () {
-  const userEvent = $("#eventTextArea3").val();
+  var tenAM = localStorage.getItem("10");
+  $("#10").val(tenAM);
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent3", userEvent);
-  }
-});
-$(".saveBtn4").on("click", function () {
-  const userEvent = $("#eventTextArea4").val();
+  var elevenAM = localStorage.getItem("11");
+  $("#11").val(elevenAM);
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent4", userEvent);
-  }
-});
-$(".saveBtn5").on("click", function () {
-  const userEvent = $("#eventTextArea5").val();
+  var noon = localStorage.getItem("12");
+  $("#12").val(noon);
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent5", userEvent);
-  }
-});
-$(".saveBtn6").on("click", function () {
-  const userEvent = $("#eventTextArea6").val();
+  var onePM = localStorage.getItem("13");
+  $("#13").val(onePM);
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent6", userEvent);
-  }
-});
-$(".saveBtn7").on("click", function () {
-  const userEvent = $("#eventTextArea7").val();
+  var twoPM = localStorage.getItem("14");
+  $("#14").val(twoPM);
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent7", userEvent);
-  }
-});
-$(".saveBtn8").on("click", function () {
-  const userEvent = $("#eventTextArea8").val();
+  var threePM = localStorage.getItem("15");
+  $("#15").val(threePM);
 
-  if (userEvent === "") {
-    alert("please provide an event in order to save");
-  } else {
-    localStorage.setItem("userEvent8", userEvent);
-  }
+  var fourPM = localStorage.getItem("16");
+  $("#16").val(fourPM);
+
+  var fivePM = localStorage.getItem("17");
+  $("#17").val(fivePM);
+
+  //When the submit button for any time block is clicked, the value of that time block (the message that has been written there) is set in local storage.
+  $(".btn").on("click", function () {
+    var messageId = $(this).data("time");
+    // console.log($(this).data("time"));
+    $("#" + messageId).val();
+    localStorage.setItem(messageId, $("#" + messageId).val());
+  });
 });
